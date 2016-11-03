@@ -1,6 +1,6 @@
 var Queue = function() {
-  var theQueue = Object.create(queueMethods); // var size, var storage 
-                                              // return 
+  var theQueue = {};
+  theQueue = extend(theQueue, queueMethods);
   theQueue.storage = {}; 
   theQueue.queueEnd = 0; 
   theQueue.queueStart = 0;
@@ -24,3 +24,13 @@ var queueMethods = {
   }
 };
 
+function extend(obj) {
+    var toAdd = Array.prototype.slice.call(arguments);
+    toAdd.shift();
+    toAdd.forEach(function(item){
+      for(var prop in item){
+        obj[prop] = item[prop];
+      }
+    });
+    return obj; 
+  };
